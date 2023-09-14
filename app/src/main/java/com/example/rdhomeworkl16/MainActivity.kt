@@ -2,6 +2,7 @@ package com.example.rdhomeworkl16
 
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,17 +18,19 @@ class MainActivity: Activity() {
         val rcView: RecyclerView = findViewById(R.id.main_rc_view)
 
         val api = ApiClient.client.create(ApiInterface::class.java)
+
         api.getMemes()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                       if (it.data.info.isNotEmpty()){
-                           val item = it.data.info
-                           val adapter = RecyclerViewAdapter(item, {})
+                       if (it.isNotEmpty()){
+                           val item = it
+                           val adapter = RecyclerViewAdapter(item, {
+                           })
                            rcView.adapter = adapter
                        }
             },{
-                Toast.makeText(this,"Error", Toast.LENGTH_SHORT).show()
+                println("$it")
             })
 
         rcView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,false)
