@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-class RecyclerViewAdapter(var items:List<JsData> = emptyList(), val callBack:(result: String) -> Unit): RecyclerView.Adapter<RecyclerViewViewHolder>() {
+class RecyclerViewAdapter(val items:List<JsData>, val callBack:(result: String) -> Unit): RecyclerView.Adapter<RecyclerViewViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewViewHolder {
         val listItemViewHolder = LayoutInflater.from(parent.context).inflate(R.layout.rc_item_layout, parent, false)
         return RecyclerViewViewHolder(listItemViewHolder)
@@ -26,12 +26,9 @@ class RecyclerViewAdapter(var items:List<JsData> = emptyList(), val callBack:(re
             callBack(position.toString())
         }
     }
-    fun updateList(modifeedItems: List<JsData>){
-        items = modifeedItems
-        notifyDataSetChanged()
+
     }
 
-}
 class RecyclerViewViewHolder(itemView : View): RecyclerView.ViewHolder(itemView){
     val title: TextView = itemView.findViewById(R.id.title)
     val fullNameTv: TextView = itemView.findViewById(R.id.full_name_tv)
