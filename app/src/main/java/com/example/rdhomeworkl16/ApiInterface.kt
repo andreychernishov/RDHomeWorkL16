@@ -5,5 +5,5 @@ import retrofit2.http.GET
 
 interface ApiInterface {
     @GET("/superhero-api/api/all.json")
-    fun getMemes(): Single<List<JsData>>
+    fun getMemes(): Single<MutableList<JsData>>
 }

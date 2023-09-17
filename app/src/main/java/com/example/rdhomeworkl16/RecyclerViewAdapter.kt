@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-class RecyclerViewAdapter(val items:List<JsData>, val callBack:(result: String) -> Unit): RecyclerView.Adapter<RecyclerViewViewHolder>() {
+class RecyclerViewAdapter(var items:MutableList<JsData> = mutableListOf(), val callBack:(result: String) -> Unit): RecyclerView.Adapter<RecyclerViewViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewViewHolder {
         val listItemViewHolder = LayoutInflater.from(parent.context).inflate(R.layout.rc_item_layout, parent, false)
         return RecyclerViewViewHolder(listItemViewHolder)
@@ -26,8 +26,11 @@ class RecyclerViewAdapter(val items:List<JsData>, val callBack:(result: String) 
             callBack(position.toString())
         }
     }
-
-    }
+//    fun updateItemList(updatedList: MutableList<JsData>) {
+//        items = updatedList
+//        notifyDataSetChanged()
+//    }
+}
 
 class RecyclerViewViewHolder(itemView : View): RecyclerView.ViewHolder(itemView){
     val title: TextView = itemView.findViewById(R.id.title)
