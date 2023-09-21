@@ -2,6 +2,7 @@ package com.example.rdhomeworkl16
 
 import com.google.gson.annotations.SerializedName
 
+
 data class JsData(
     val id: String,
     val name: String,
@@ -30,9 +31,9 @@ data class Appearance(
     val eyeColor: String,
     val hairColor: String
 )
-//data class Height(
-//    @SerializedName("0")
-//    val height: String)
+data class Height(
+    @SerializedName("0")
+    val height: String)
 data class Biography(
     val fullName: String,
     val alterEgos: String,
@@ -51,5 +52,6 @@ data class Connections(
     val relatives: String
 )
 data class Images(
-    val sm: String
+    val sm: String,
+    val md: String
 )
